@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  web:
+    image: nginx
+
+    ports:
+      - 10018:80
+
+    # map everything to the image (you have todo a composer install for this
+    volumes:
+      - ./:/var/www/app
+
+  php:
+    image: unite/php
+
+    build:
+      context: .
+      dockerfile: config/docker/php/Dockerfile
+
+    # map everything to the image (you have todo a composer install for this
+    volumes:
+      - ./:/var/www/app
+
